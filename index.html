@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><ContentSlot content-key="index_html.initialize_monorepo" fallback="Initialize Monorepo" /></title>
+    <style>
+        :root {
+            --brand-primary: #2563eb;
+            --brand-accent: #ec4899;
+            --text-primary: #0f172a;
+            --surface-background: #f8fafc;
+            --color-brand: var(--brand-primary);
+            --color-text: var(--text-primary);
+            --space-xl: 2rem;
+        }
+        body {
+            font-family: system-ui, sans-serif;
+            background-color: var(--surface-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: var(--space-xl);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .hero-section {
+            max-width: 600px;
+            text-align: center;
+            padding: var(--space-xl);
+            background-color: var(--surface-background);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-brand);
+            margin-bottom: 0.5rem;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-xl);
+            color: var(--color-text);
+        }
+        .primary-button {
+            background-color: var(--brand-primary);
+            color: white;
+            border: none;
+            border-radius: 1rem;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+        }
+        .primary-button:hover {
+            background-color: var(--brand-accent);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section" role="region" aria-label="Welcome">
+        <h1 class="hero-title"><ContentSlot content-key="index_html.welcome_to_the_monorepo" fallback="Welcome to the Monorepo" /></h1>
+        <p class="hero-subtitle"><ContentSlot content-key="index_html.this_is_the_initial_scaffold" fallback="This is the initial scaffold for the fullstack monorepo topology." /></p>
+        <button class="primary-button" type="button"><ContentSlot content-key="index_html.get_started" fallback="Get Started" /></button>
+    </section>
+</body>
+</html>
