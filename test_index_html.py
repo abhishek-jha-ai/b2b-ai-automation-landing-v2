@@ -33,7 +33,7 @@ class TestIndexHTML(unittest.TestCase):
         self.assertNotEqual(style_start, -1)
         self.assertNotEqual(style_end, -1)
         style_content = self.html_content[style_start:style_end]
-        allowed_tokens = ['--color-brand', '--color-accent', '--color-text', '--color-surface']
+        allowed_tokens = ['--brand-primary', '--brand-accent', '--text-primary', '--surface-background']
         for token in allowed_tokens:
             self.assertIn(token, style_content)
 
