@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><ContentSlot content-key="index_html.b2b_ai_sales_automation_landing" fallback="B2B AI Sales Automation Landing Page" /><//title>
+    <meta name="description" content="Premium SaaS for B2B AI Sales Automation" />
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      :root {
+        --color-brand: #2563eb;
+        --color-accent: #ec4899;
+        --color-text: #0f172a;
+        --color-surface: #f8fafc;
+        --space-xl: 2rem;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, Inter, sans-serif;
+        background: var(--color-surface);
+        color: var(--color-text);
+      }
+      #app {
+        min-height: 100vh;
+        background: var(--color-surface);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Compose governed components only -->
+      <HeroSection
+        align="center"
+        tone="premium_saas"
+        density="comfortable"
+      >
+        <template #title>
+          <span><ContentSlot content-key="index_html.ai_powered_b2b_sales_automation" fallback="AI-Powered B2B Sales Automation" /><//span>
+        </template>
+        <template #subtitle>
+          <span><ContentSlot content-key="index_html.accelerate_your_sales_pipeline_with" fallback="Accelerate your sales pipeline with technical, minimal, and premium automation tools." /><//span>
+        </template>
+        <template #primaryCta>
+          <PrimaryButton><ContentSlot content-key="index_html.get_started" fallback="Get Started" /><//PrimaryButton>
+        </template>
+        <template #secondaryCta>
+          <PrimaryButton tone="secondary"><ContentSlot content-key="index_html.request_demo" fallback="Request Demo" /><//PrimaryButton>
+        </template>
+      </HeroSection>
+      <!-- Other sections (ProblemSolutionSection, CapabilitiesGridSection, etc.) are composed in their respective Vue files -->
+    </div>
+    <!-- Vue or other frontend framework mount point -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
