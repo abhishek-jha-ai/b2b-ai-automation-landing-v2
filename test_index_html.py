@@ -28,7 +28,6 @@ class TestIndexHTML(unittest.TestCase):
         self.assertIn('<title>', self.html_content)
 
     def test_brand_tokens_in_style(self):
-        # Check that style contains only allowed brand tokens
         style_start = self.html_content.find('<style>')
         style_end = self.html_content.find('</style>')
         self.assertNotEqual(style_start, -1)
