@@ -46,9 +46,16 @@ project_contract = ProjectContract()
 execution_contract = ExecutionContract()
 capability_binding = CapabilityBinding(project_contract, execution_contract)
 
+
 @app.route('/')
 def home():
-    # Initialize both contracts via capability binding
+    # Home route
+    return jsonify({"message": "Welcome to the B2B AI Sales Automation API"})
+
+
+@app.route('/initialize-ci')
+def initialize_ci():
+    # Initialize both contracts via capability binding for CI initialization
     result = capability_binding.initialize_all()
     return jsonify(result)
 

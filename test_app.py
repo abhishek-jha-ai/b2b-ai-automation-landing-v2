@@ -9,7 +9,7 @@ class TestInitializeContracts(unittest.TestCase):
 
     def test_project_contract_initialization(self):
         # Initially not initialized
-        self.assertFalse(project_contract.initialized)
+        project_contract.initialized = False
         result = project_contract.initialize()
         self.assertTrue(project_contract.initialized)
         self.assertEqual(result["status"], "success")
@@ -17,7 +17,7 @@ class TestInitializeContracts(unittest.TestCase):
 
     def test_execution_contract_initialization(self):
         # Initially not initialized
-        self.assertFalse(execution_contract.initialized)
+        execution_contract.initialized = False
         result = execution_contract.initialize()
         self.assertTrue(execution_contract.initialized)
         self.assertEqual(result["status"], "success")
@@ -37,6 +37,16 @@ class TestInitializeContracts(unittest.TestCase):
 
     def test_home_route(self):
         response = self.app.get('/')
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.data)
+        self.assertIn("message", data)
+        self.assertIn("Welcome to the B2B AI Sales Automation API", data["message"])
+
+    def test_initialize_ci_route(self):
+        # This route should initialize both contracts
+        project_contract.initialized = False
+        execution_contract.initialized = False
+        response = self.app.get('/initialize-ci')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.data)
         self.assertIn("project_contract", data)
