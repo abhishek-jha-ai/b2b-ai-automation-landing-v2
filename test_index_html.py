@@ -38,8 +38,12 @@ class TestIndexHTML(unittest.TestCase):
             self.assertIn(token, style_content)
 
     def test_hero_section_and_primary_button(self):
+        # Check presence of HeroSection component
         self.assertIn('<HeroSection', self.html_content)
+        # Check presence of PrimaryButton component
         self.assertIn('<PrimaryButton>', self.html_content)
+        # Check that primary CTA button has tone brand-primary
+        self.assertIn('<PrimaryButton tone="brand-primary">Get Started</PrimaryButton>', self.html_content)
 
     def test_script_tag(self):
         self.assertIn('<script type="module" src="/src/main.ts"></script>', self.html_content)
