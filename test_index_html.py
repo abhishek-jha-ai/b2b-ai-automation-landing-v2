@@ -41,6 +41,14 @@ class TestIndexHTML(unittest.TestCase):
         self.assertIn('<HeroSection', self.html_content)
         self.assertIn('<PrimaryButton>', self.html_content)
 
+    def test_primary_cta_button_text(self):
+        # Check that the primary CTA button text is 'Get Started'
+        self.assertIn('<PrimaryButton>Get Started</PrimaryButton>', self.html_content)
+
+    def test_secondary_cta_button_text(self):
+        # Check that the secondary CTA button text is 'Request Demo'
+        self.assertIn('<PrimaryButton tone="secondary">Request Demo</PrimaryButton>', self.html_content)
+
     def test_script_tag(self):
         self.assertIn('<script type="module" src="/src/main.ts"></script>', self.html_content)
 
