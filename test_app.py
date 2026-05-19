@@ -1,6 +1,6 @@
 import unittest
 import json
-from app import app, project_contract, execution_contract, capability_binding
+from app import app, project_contract, execution_contract, capability_binding, telemetry_service, telemetry_capability_binding
 
 class TestInitializeContracts(unittest.TestCase):
     def setUp(self):
@@ -9,6 +9,7 @@ class TestInitializeContracts(unittest.TestCase):
 
     def test_project_contract_initialization(self):
         # Initially not initialized
+        project_contract.initialized = False
         self.assertFalse(project_contract.initialized)
         result = project_contract.initialize()
         self.assertTrue(project_contract.initialized)
@@ -17,6 +18,7 @@ class TestInitializeContracts(unittest.TestCase):
 
     def test_execution_contract_initialization(self):
         # Initially not initialized
+        execution_contract.initialized = False
         self.assertFalse(execution_contract.initialized)
         result = execution_contract.initialize()
         self.assertTrue(execution_contract.initialized)
@@ -43,6 +45,36 @@ class TestInitializeContracts(unittest.TestCase):
         self.assertIn("execution_contract", data)
         self.assertEqual(data["project_contract"]["status"], "success")
         self.assertEqual(data["execution_contract"]["status"], "success")
+
+    def test_telemetry_service_initialization(self):
+        telemetry_service.baselines_initialized = False
+        telemetry_service.observability_initialized = False
+        result = telemetry_service.initialize_telemetry()
+        self.assertTrue(result["telemetry"]["baselines"])
+        self.assertTrue(result["telemetry"]["observability"])
+        self.assertEqual(result["status"], "success")
+        self.assertIn("Telemetry baselines and observability initialized", result["message"])
+
+    def test_telemetry_capability_binding(self):
+        telemetry_service.baselines_initialized = False
+        telemetry_service.observability_initialized = False
+        result = telemetry_capability_binding.initialize()
+        self.assertTrue(result["telemetry"]["baselines"])
+        self.assertTrue(result["telemetry"]["observability"])
+        self.assertEqual(result["status"], "success")
+        self.assertIn("Telemetry baselines and observability initialized", result["message"])
+
+    def test_telemetry_init_route(self):
+        telemetry_service.baselines_initialized = False
+        telemetry_service.observability_initialized = False
+        response = self.app.post('/telemetry/init')
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.data)
+        self.assertEqual(data["status"], "success")
+        self.assertIn("telemetry", data)
+        self.assertTrue(data["telemetry"]["baselines"])
+        self.assertTrue(data["telemetry"]["observability"])
+        self.assertIn("Telemetry baselines and observability initialized", data["message"])
 
 if __name__ == '__main__':
     unittest.main()

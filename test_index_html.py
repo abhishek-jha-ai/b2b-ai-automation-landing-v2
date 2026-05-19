@@ -41,6 +41,11 @@ class TestIndexHTML(unittest.TestCase):
         self.assertIn('<HeroSection', self.html_content)
         self.assertIn('<PrimaryButton>', self.html_content)
 
+    def test_telemetry_hero_section(self):
+        self.assertIn('Telemetry Initialization', self.html_content)
+        self.assertIn('Configure telemetry baselines and observability', self.html_content)
+        self.assertIn('Initialize Telemetry', self.html_content)
+
     def test_script_tag(self):
         self.assertIn('<script type="module" src="/src/main.ts"></script>', self.html_content)
 
